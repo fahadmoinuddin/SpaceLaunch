@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SpaceLaunch"
 include ':app'
+include ':core'
+include ':astronaut'
+include ':astronaut:astronaut_presentation'
+include ':astronaut:astronaut_domain'
+include ':astronaut:astronaut_data'
