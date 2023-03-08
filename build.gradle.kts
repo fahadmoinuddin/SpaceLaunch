@@ -11,6 +11,7 @@ buildscript {
         classpath(Build.kotlinGradlePlugin)
         classpath(Build.hiltAndroidGradlePlugin)
         classpath(Build.kotlinSerialization)
+        //classpath(Navigation.navigationSafeArgsGradle)
     }
 }
 

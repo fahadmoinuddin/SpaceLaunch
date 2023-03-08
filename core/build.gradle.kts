@@ -3,5 +3,6 @@ apply {
 }
 
 dependencies {
+    "implementation"(Lifecycle.lifecycleRuntime)
     "implementation"(Google.material)
 }

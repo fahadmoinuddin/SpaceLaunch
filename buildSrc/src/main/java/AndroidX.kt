@@ -7,4 +7,7 @@ object AndroidX {
 
     private const val constraintLayoutVersion = "2.1.4"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+
+    private const val fragmentKtxVersion = "1.4.1"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
 }
