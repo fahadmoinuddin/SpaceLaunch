@@ -3,5 +3,5 @@ apply {
 }
 
 dependencies {
-
+    "api"(Retrofit.retrofit)
 }

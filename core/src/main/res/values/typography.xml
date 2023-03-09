@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpaceLaunch.Typography">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/charcoal</item>
+    </style>
+
+    <style name="SpaceLaunch.Typography.Bold" parent="SpaceLaunch.Typography">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="SpaceLaunch.Typography.Italic" parent="SpaceLaunch.Typography">
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="SpaceLaunch.Heading" parent="SpaceLaunch.Typography">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="SpaceLaunch.Heading.Bold" parent="SpaceLaunch.Typography.Bold">
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="SpaceLaunch.title" parent="SpaceLaunch.Typography">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SpaceLaunch.title.Bold" parent="SpaceLaunch.Typography.Bold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SpaceLaunch.body" parent="SpaceLaunch.Typography">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SpaceLaunch.body.Bold" parent="SpaceLaunch.Typography.Bold">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SpaceLaunch.caption" parent="SpaceLaunch.Typography">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SpaceLaunch.caption.Bold" parent="SpaceLaunch.Typography.Bold">
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="SpaceLaunch.caption.Italic" parent="SpaceLaunch.Typography.Italic">
+        <item name="android:textSize">12sp</item>
+    </style>
+</resources>

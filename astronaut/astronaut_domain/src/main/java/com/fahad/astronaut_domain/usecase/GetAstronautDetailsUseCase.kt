@@ -4,6 +4,7 @@ import com.fahad.astronaut_domain.repository.IAstronautRepository
 import com.fahad.core.common.Resource
 import kotlinx.coroutines.flow.flow
 
+// use case to get the list of astronauts
 class GetAstronautDetailsUseCase(
     private val astronautRepository: IAstronautRepository
 ) {

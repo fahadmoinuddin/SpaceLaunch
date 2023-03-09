@@ -8,6 +8,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.fahad.spacelaunch.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Single activity which contains a navigation controller to direct to different presentation modules.
+ */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 

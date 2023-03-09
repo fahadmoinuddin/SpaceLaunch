@@ -5,6 +5,7 @@ import com.fahad.astronaut_domain.model.Astronaut
 import com.fahad.core.enum.DateFormatEnum
 import com.fahad.core.extension.toDate
 
+// mapper function to transform repository model to domain model
 fun AstronautDetail.toAstronaut() = Astronaut(
     id,
     name,

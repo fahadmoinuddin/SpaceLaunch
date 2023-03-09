@@ -12,7 +12,7 @@ interface AstronautApi {
         const val BASE_URL = "https://spacelaunchnow.me/api/3.5.0/"
     }
 
-    @GET("astronaut")
+    @GET("astronaut?limit=20")
     suspend fun getAstronautList(): Response<AstronautList>
 
     @GET("astronaut/{astronautId}")

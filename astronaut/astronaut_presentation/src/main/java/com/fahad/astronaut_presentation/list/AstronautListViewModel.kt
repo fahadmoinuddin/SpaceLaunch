@@ -37,6 +37,10 @@ class AstronautListViewModel @Inject constructor(
         }
     }
 
+    fun clearList() {
+        _state.value = UIState.Success(emptyList())
+    }
+
     fun getAstronautList() {
         viewModelScope.launch {
             with(_state) {

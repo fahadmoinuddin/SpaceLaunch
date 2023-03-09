@@ -15,7 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AstronautListFragment : BaseFragment<FragmentAstronautListBinding>(
     FragmentAstronautListBinding::inflate,
-    R.id.shimmer
+    R.id.shimmer,
+    R.id.retryView
 ) {
 
     private val astronautListViewModel: AstronautListViewModel by viewModels()
@@ -30,6 +31,7 @@ class AstronautListFragment : BaseFragment<FragmentAstronautListBinding>(
         setHasOptionsMenu(true)
         initView()
         initStateListeners()
+        initClickListeners()
         if (astronautListViewModel.hasData.not()) {
             getAstronautList()
         }
@@ -57,6 +59,7 @@ class AstronautListFragment : BaseFragment<FragmentAstronautListBinding>(
     }
 
     private fun getAstronautList() {
+        astronautListViewModel.clearList()
         astronautListViewModel.getAstronautList()
     }
 
@@ -77,15 +80,25 @@ class AstronautListFragment : BaseFragment<FragmentAstronautListBinding>(
             when (it) {
                 is UIState.Success -> {
                     hideShimmer()
+                    hideRetry()
                     astronautListAdapter.updateList(it.data.orEmpty())
                 }
                 is UIState.Error -> {
                     hideShimmer()
-                    showToast(it.message)
+                    showRetry()
                 }
-                is UIState.Loading -> { showShimmer() }
+                is UIState.Loading -> {
+                    showShimmer()
+                    hideRetry()
+                }
                 else -> Unit
             }
+        }
+    }
+
+    private fun initClickListeners() {
+        binding.retryView.root.setOnClickListener {
+            getAstronautList()
         }
     }
 }

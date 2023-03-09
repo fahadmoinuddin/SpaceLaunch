@@ -3,4 +3,6 @@
     <string name="astronauts">Astronauts</string>
     <string name="sortByName">Sort By Name</string>
     <string name="refresh">Refresh</string>
+    <string name="born_on">Born on %1$s</string>
+    <string name="failed_fetch">Failed to fetch data. Please Retry.</string>
 </resources>

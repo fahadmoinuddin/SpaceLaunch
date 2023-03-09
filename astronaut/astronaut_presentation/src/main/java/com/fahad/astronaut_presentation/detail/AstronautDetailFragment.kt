@@ -1,14 +1,15 @@
 package com.fahad.astronaut_presentation.detail
 
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.fahad.astronaut_presentation.R
 import com.fahad.astronaut_presentation.databinding.FragmentAstronautDetailBinding
+import com.fahad.core.enum.DateFormatEnum
 import com.fahad.core.extension.collectOnStarted
 import com.fahad.core.extension.loadFromUrl
+import com.fahad.core.extension.toCustomString
 import com.fahad.core.ui.BaseFragment
 import com.fahad.core.ui.UIState
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,7 +17,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
     FragmentAstronautDetailBinding::inflate,
-    R.id.shimmer
+    R.id.shimmer,
+    R.id.retryView
 ) {
 
     private val args: AstronautDetailFragmentArgs by navArgs()
@@ -25,16 +27,12 @@ class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
     private val astronautId: Int
     get() = args.astronautId
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initStateListeners()
-        astronautDetailViewModel.getAstronautDetails(astronautId)
+        initClickListeners()
+        getAstronautDetails()
     }
 
     private fun initStateListeners() {
@@ -42,14 +40,18 @@ class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
             when (it) {
                 is UIState.Success -> {
                     hideShimmer()
+                    hideRetry()
                     binding.apply {
                         it.data?.let { astronaut ->
                             astronautNameTextView.text = astronaut.name
                             astronautNationalityTextView.text = astronaut.nationality
-                            astronautDobTextView.text = astronaut.dateOfBirth.toString()
+                            astronautDobTextView.text =
+                                getString(
+                                    com.fahad.core.R.string.born_on,
+                                    astronaut.dateOfBirth.toCustomString(DateFormatEnum.Day_Month_Year)
+                                )
                             astronautBioTextView.text = astronaut.bio
                             profileImageView.apply {
-                                transitionName = astronaut.profileImageThumbnail
                                 loadFromUrl(astronaut.profileImageThumbnail)
                             }
                         }
@@ -57,13 +59,24 @@ class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
                 }
                 is UIState.Error -> {
                     hideShimmer()
-                    showToast(it.message)
+                    showRetry()
                 }
                 is UIState.Loading -> {
+                    hideRetry()
                     showShimmer()
                 }
                 else -> Unit
             }
+        }
+    }
+
+    private fun getAstronautDetails() {
+        astronautDetailViewModel.getAstronautDetails(astronautId)
+    }
+
+    private fun initClickListeners() {
+        binding.retryView.root.setOnClickListener {
+            getAstronautDetails()
         }
     }
 }

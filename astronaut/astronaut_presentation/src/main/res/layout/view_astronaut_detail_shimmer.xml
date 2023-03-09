@@ -8,7 +8,7 @@
     android:padding="8dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profileImageView"
+        android:id="@+id/profileShimmerImageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
@@ -19,37 +19,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/astronautNameTextView"
+        android:id="@+id/astronautNameShimmerTextView"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginTop="16dp"
         android:background="@color/shimmer_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profileImageView"
+        app:layout_constraintTop_toBottomOf="@id/profileShimmerImageView"
         tools:text="Astronaut name"/>
 
     <TextView
-        android:id="@+id/astronautDobTextView"
+        android:id="@+id/astronautDobShimmerTextView"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:layout_marginTop="4dp"
         android:background="@color/shimmer_background"
-        app:layout_constraintTop_toBottomOf="@id/astronautNameTextView"
-        app:layout_constraintStart_toStartOf="@id/astronautNameTextView"
-        app:layout_constraintBottom_toTopOf="@id/astronautBioTextView"
-        app:layout_constraintEnd_toEndOf="@id/astronautNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/astronautNameShimmerTextView"
+        app:layout_constraintStart_toStartOf="@id/astronautNameShimmerTextView"
+        app:layout_constraintBottom_toTopOf="@id/astronautBioShimmerTextView"
+        app:layout_constraintEnd_toEndOf="@id/astronautNameShimmerTextView"
         tools:text="Astronaut nationality"/>
 
 
     <TextView
-        android:id="@+id/astronautBioTextView"
+        android:id="@+id/astronautBioShimmerTextView"
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:background="@color/shimmer_background"
-        app:layout_constraintTop_toBottomOf="@id/astronautDobTextView"
-        app:layout_constraintStart_toStartOf="@id/astronautNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/astronautDobShimmerTextView"
+        app:layout_constraintStart_toStartOf="@id/astronautNameShimmerTextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Astronaut nationality"/>
