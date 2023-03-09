@@ -25,7 +25,7 @@ class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
     private val astronautDetailViewModel: AstronautDetailViewModel by viewModels()
 
     private val astronautId: Int
-    get() = args.astronautId
+        get() = args.astronautId
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +48,9 @@ class AstronautDetailFragment : BaseFragment<FragmentAstronautDetailBinding>(
                             astronautDobTextView.text =
                                 getString(
                                     com.fahad.core.R.string.born_on,
-                                    astronaut.dateOfBirth.toCustomString(DateFormatEnum.Day_Month_Year)
+                                    astronaut.dateOfBirth.toCustomString(
+                                        DateFormatEnum.Day_Month_Year
+                                    )
                                 )
                             astronautBioTextView.text = astronaut.bio
                             profileImageView.apply {

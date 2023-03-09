@@ -11,7 +11,9 @@ import com.fahad.core.R
  * Utility object to get Glide configurations
  */
 object GlideUtil {
-    fun defaultLoadingOption(@DrawableRes fallbackImage: Int = R.drawable.ic_baseline_broken_image_24): RequestOptions {
+    fun defaultLoadingOption(
+        @DrawableRes fallbackImage: Int = R.drawable.ic_baseline_broken_image_24
+    ): RequestOptions {
         val shimmerDrawable = ShimmerDrawable().apply {
             setShimmer(shimmer)
         }

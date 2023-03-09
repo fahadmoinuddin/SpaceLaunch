@@ -9,7 +9,7 @@ import com.fahad.core.common.Resource
 
 class AstronautRepository(
     private val api: AstronautApi
-): IAstronautRepository {
+) : IAstronautRepository {
 
     override suspend fun getAstronautList(): Resource<List<Astronaut>?> {
         return try {
@@ -30,5 +30,4 @@ class AstronautRepository(
             Resource.Error(e.localizedMessage)
         }
     }
-
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KtlintProjectConfiguration">
+    <androidMode>true</androidMode>
+    <disabledRules>
+      <list>
+        <option value="package-name" />
+        <option value="max-line-length" />
+        <option value="enum-entry-name-case" />
+        <option value="no-wildcard-imports" />
+      </list>
+    </disabledRules>
+  </component>
+</project>

@@ -1,8 +1,8 @@
 package com.fahad.astronaut_domain.model
 
 import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 import java.util.*
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Astronaut(
@@ -12,4 +12,4 @@ data class Astronaut(
     val bio: String?,
     val dateOfBirth: Date?,
     val profileImageThumbnail: String?
-): Parcelable
+) : Parcelable

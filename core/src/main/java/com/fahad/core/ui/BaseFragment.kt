@@ -17,7 +17,7 @@ import com.fahad.core.extension.Inflate
  * _shimmerId - layout view id from xml - this is to show loading animation in the screen
  * _retryViewId - layout view id from xml - this is to show a retry view in case of errors.
  */
-abstract class BaseFragment<T: ViewBinding>: Fragment {
+abstract class BaseFragment<T : ViewBinding> : Fragment {
 
     constructor(
         inflate: Inflate<T>,
@@ -36,12 +36,14 @@ abstract class BaseFragment<T: ViewBinding>: Fragment {
     }
 
     private val _inflate: Inflate<T>
+
     @IdRes private val _shimmerId: Int?
+
     @IdRes private val _retryViewId: Int?
 
     private lateinit var _binding: T
     val binding
-    get() = _binding
+        get() = _binding
 
     override fun onCreateView(
         inflater: LayoutInflater,

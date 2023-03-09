@@ -7,17 +7,15 @@ import com.fahad.astronaut_domain.usecase.AstronautUseCases
 import com.fahad.core.common.Resource
 import com.fahad.core.ui.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @HiltViewModel
 class AstronautDetailViewModel @Inject constructor(
     private val astronautUseCases: AstronautUseCases
-): ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow<UIState<Astronaut?>>(UIState.Idle())
     val state = _state.asStateFlow()
@@ -37,5 +35,4 @@ class AstronautDetailViewModel @Inject constructor(
             }
         }
     }
-
 }

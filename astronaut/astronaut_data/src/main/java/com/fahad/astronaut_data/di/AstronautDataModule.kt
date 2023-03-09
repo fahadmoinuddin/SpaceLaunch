@@ -9,12 +9,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.serialization.json.Json
+import javax.inject.Singleton
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -24,9 +23,11 @@ object AstronautDataModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
+            .addInterceptor(
+                HttpLoggingInterceptor().apply {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
+            )
             .build()
     }
 
@@ -35,7 +36,9 @@ object AstronautDataModule {
     fun provideAstronautApi(client: OkHttpClient): AstronautApi {
         return Retrofit.Builder()
             .baseUrl(AstronautApi.BASE_URL)
-            .addConverterFactory(JsonUtil.safeJson.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(
+                JsonUtil.safeJson.asConverterFactory("application/json".toMediaType())
+            )
             .client(client)
             .build()
             .create(AstronautApi::class.java)

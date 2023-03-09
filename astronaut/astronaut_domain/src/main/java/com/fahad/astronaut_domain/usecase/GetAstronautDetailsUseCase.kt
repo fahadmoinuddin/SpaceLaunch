@@ -10,9 +10,10 @@ class GetAstronautDetailsUseCase(
 ) {
     suspend operator fun invoke(id: Int) = flow {
         emit(Resource.Loading())
-        if (id <= 0)
+        if (id <= 0) {
             emit(Resource.Error("id cannot be empty"))
-        else
+        } else {
             emit(astronautRepository.getAstronautDetail(id))
+        }
     }
 }

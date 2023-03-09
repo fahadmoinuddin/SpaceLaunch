@@ -4,5 +4,4 @@ object Navigation {
     const val navigationUI = "androidx.navigation:navigation-ui-ktx:$version"
 
     const val navigationSafeArgsGradle = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
-
 }

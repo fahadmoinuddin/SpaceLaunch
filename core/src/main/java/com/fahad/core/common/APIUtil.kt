@@ -13,7 +13,7 @@ object APIUtil {
             } else {
                 Resource.Error(response.errorBody()?.string())
             }
-        } catch(e: Exception) {
+        } catch (e: Exception) {
             Resource.Error(e.localizedMessage.orEmpty())
         }
     }

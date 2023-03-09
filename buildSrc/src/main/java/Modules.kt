@@ -1,8 +1,4 @@
-
-
 object Modules {
-    const val app = ":app"
-
     const val core = ":core"
 
     const val astronautData = ":astronaut:astronaut_data"
