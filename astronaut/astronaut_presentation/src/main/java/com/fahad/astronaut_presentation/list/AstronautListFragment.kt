@@ -1,42 +1,89 @@
 package com.fahad.astronaut_presentation.list
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import android.view.*
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.fahad.astronaut_presentation.R
 import com.fahad.astronaut_presentation.databinding.FragmentAstronautListBinding
 import com.fahad.core.extension.collectOnStarted
+import com.fahad.core.ui.BaseFragment
 import com.fahad.core.ui.UIState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AstronautListFragment : Fragment() {
+class AstronautListFragment : BaseFragment<FragmentAstronautListBinding>(
+    FragmentAstronautListBinding::inflate,
+    R.id.shimmer
+) {
 
-    private lateinit var binding: FragmentAstronautListBinding
     private val astronautListViewModel: AstronautListViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAstronautListBinding.inflate(inflater, container, false)
-        return binding.root
+    private val astronautListAdapter = AstronautListAdapter(mutableListOf()) { astronaut ->
+        val action = AstronautListFragmentDirections
+            .actionAstronautListFragmentToAstronautDetailFragment(astronaut.id, astronaut.name)
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
+        initView()
+        initStateListeners()
+        if (astronautListViewModel.hasData.not()) {
+            getAstronautList()
+        }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.astronaut_list_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.sortByName -> {
+                if (astronautListViewModel.hasData) {
+                    astronautListViewModel.sortListBy(AstronautListViewModel.SortOptions.NAME)
+                }
+                true
+            }
+            R.id.refresh -> {
+                getAstronautList()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun getAstronautList() {
+        astronautListViewModel.getAstronautList()
+    }
+
+    private fun initView() {
+        binding.astronautListRecyclerView.apply {
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+            adapter = astronautListAdapter
+        }
+    }
+
+    private fun initStateListeners() {
         astronautListViewModel.state.collectOnStarted(viewLifecycleOwner) {
             when (it) {
                 is UIState.Success -> {
-                    Log.d("Astronaut", it.data?.firstOrNull()?.name.orEmpty())
+                    hideShimmer()
+                    astronautListAdapter.updateList(it.data.orEmpty())
                 }
-                is UIState.Error -> {}
-                is UIState.Loading -> {}
+                is UIState.Error -> {
+                    hideShimmer()
+                    showToast(it.message)
+                }
+                is UIState.Loading -> { showShimmer() }
                 else -> Unit
             }
         }

@@ -3,6 +3,7 @@ package com.fahad.astronaut_data.di
 import com.fahad.astronaut_data.remote.AstronautApi
 import com.fahad.astronaut_data.repository.AstronautRepository
 import com.fahad.astronaut_domain.repository.IAstronautRepository
+import com.fahad.core.common.JsonUtil
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
@@ -34,7 +35,7 @@ object AstronautDataModule {
     fun provideAstronautApi(client: OkHttpClient): AstronautApi {
         return Retrofit.Builder()
             .baseUrl(AstronautApi.BASE_URL)
-            .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+            .addConverterFactory(JsonUtil.safeJson.asConverterFactory("application/json".toMediaType()))
             .client(client)
             .build()
             .create(AstronautApi::class.java)

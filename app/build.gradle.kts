@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
     id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    //id("androidx.navigation.safeargs.kotlin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -56,8 +56,8 @@ dependencies {
     implementation(AndroidX.appCompat)
     implementation(AndroidX.constraintLayout)
 
-    //implementation(Navigation.navigationUI)
-    //implementation(Navigation.navigationFragment)
+    implementation(Navigation.navigationUI)
+    implementation(Navigation.navigationFragment)
 
     implementation(Google.material)
 

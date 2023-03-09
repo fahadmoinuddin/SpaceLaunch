@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/astronautNavGraph"
+    app:startDestination="@id/astronautListFragment">
+
+    <fragment
+        android:id="@+id/astronautListFragment"
+        android:label="@string/astronauts"
+        android:name="com.fahad.astronaut_presentation.list.AstronautListFragment">
+
+        <action
+            android:id="@+id/action_astronautListFragment_to_astronautDetailFragment"
+            app:destination="@id/astronautDetailFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/astronautDetailFragment"
+        android:label="{astronautName}"
+        android:name="com.fahad.astronaut_presentation.detail.AstronautDetailFragment">
+
+        <argument
+            android:name="astronautId"
+            app:argType="integer" />
+
+        <argument
+            android:name="astronautName"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>

@@ -9,12 +9,12 @@ import retrofit2.http.Path
 interface AstronautApi {
 
     companion object {
-        const val BASE_URL = "https://spacelaunchnow.me/api/3.5.0"
+        const val BASE_URL = "https://spacelaunchnow.me/api/3.5.0/"
     }
 
-    @GET("/astronaut")
+    @GET("astronaut")
     suspend fun getAstronautList(): Response<AstronautList>
 
-    @GET("/astronaut/{astronautId}")
+    @GET("astronaut/{astronautId}")
     suspend fun getAstronautDetails(@Path("astronautId") astronautId: Int): Response<AstronautDetail>
 }

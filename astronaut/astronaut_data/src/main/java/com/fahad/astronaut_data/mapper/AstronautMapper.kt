@@ -11,7 +11,6 @@ fun AstronautDetail.toAstronaut() = Astronaut(
     nationality,
     bio,
     dateOfBirth.toDate(DateFormatEnum.Year_Month_Day),
-    profileImage,
     profileImageThumbnail
 
 )

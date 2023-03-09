@@ -1,8 +1,7 @@
 apply {
-    from("$rootDir/base-module.gradle")
+    from("$rootDir/presentation-module.gradle")
 }
 
 dependencies {
-    "implementation"(Lifecycle.lifecycleRuntime)
-    "implementation"(Google.material)
+
 }

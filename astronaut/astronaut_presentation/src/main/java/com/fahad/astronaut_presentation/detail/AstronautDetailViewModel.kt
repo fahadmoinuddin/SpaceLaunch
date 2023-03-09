@@ -9,6 +9,7 @@ import com.fahad.core.ui.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -26,7 +27,7 @@ class AstronautDetailViewModel @Inject constructor(
             with(_state) {
                 astronautUseCases
                     .getAstronautDetailsUseCase(id)
-                    .onEach { resource ->
+                    .collect { resource ->
                         value = when (resource) {
                             is Resource.Success -> UIState.Success(resource.data)
                             is Resource.Error -> UIState.Error(resource.message)
