@@ -40,4 +40,6 @@ SpaceLaunch is an Android app to display a list of astronauts and their details.
 
 ## Screenshots
 
+<img src="screenshots/1.png" width="200">
+<img src="screenshots/2.png" width="200">
 ![](screenshots/1.png)   ![](screenshots/2.png)
