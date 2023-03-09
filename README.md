@@ -22,6 +22,7 @@ SpaceLaunch is an Android app to display a list of astronauts and their details.
 ## Testing
 
 `:astronaut_data` has unit tests for repository
+
 `:astronaut_domain` has unit tests for usecases
 
 ## Libraries used
