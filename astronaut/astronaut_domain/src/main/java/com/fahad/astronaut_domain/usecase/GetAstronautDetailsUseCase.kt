@@ -12,6 +12,7 @@ class GetAstronautDetailsUseCase(
         emit(Resource.Loading())
         if (id <= 0)
             emit(Resource.Error("id cannot be empty"))
-        emit(astronautRepository.getAstronautDetail(id))
+        else
+            emit(astronautRepository.getAstronautDetail(id))
     }
 }

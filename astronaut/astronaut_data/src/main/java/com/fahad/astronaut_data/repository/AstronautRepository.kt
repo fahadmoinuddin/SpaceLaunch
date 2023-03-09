@@ -12,14 +12,22 @@ class AstronautRepository(
 ): IAstronautRepository {
 
     override suspend fun getAstronautList(): Resource<List<Astronaut>?> {
-        return parseResponse(api.getAstronautList()) {
-            it?.results?.map { it.toAstronaut() }.orEmpty()
+        return try {
+            parseResponse(api.getAstronautList()) {
+                it?.results?.map { it.toAstronaut() }.orEmpty()
+            }
+        } catch (e: Exception) {
+            Resource.Error(e.localizedMessage)
         }
     }
 
     override suspend fun getAstronautDetail(id: Int): Resource<Astronaut?> {
-        return parseResponse(api.getAstronautDetails(id)) {
-            it?.toAstronaut()
+        return try {
+            parseResponse(api.getAstronautDetails(id)) {
+                it?.toAstronaut()
+            }
+        } catch (e: Exception) {
+            Resource.Error(e.localizedMessage)
         }
     }
 

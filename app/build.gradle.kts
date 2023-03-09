@@ -65,5 +65,8 @@ dependencies {
     kapt(DaggerHilt.hiltCompiler)
 
     testImplementation(Testing.junit4)
+    testImplementation(Testing.mockk)
+    testImplementation(Testing.truth)
+
     androidTestImplementation(Testing.junitAndroidExt)
 }
